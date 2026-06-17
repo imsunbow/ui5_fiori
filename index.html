@@ -200,36 +200,71 @@
     .narrative strong { color: var(--navy); }
 
     /* ── TIMELINE ── */
-    .timeline { position: relative; padding: 0 0 0 32px; }
-    .timeline::before {
-      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 32px;
+      position: relative;
+      padding-bottom: 48px;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-left {
+      text-align: right;
+      padding-top: 4px;
+      position: relative;
+    }
+    .tl-left::after {
+      content: '';
+      position: absolute; right: -20px; top: 8px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--blue); border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+      z-index: 1;
+    }
+    .tl-item:not(:last-child) .tl-left::before {
+      content: '';
+      position: absolute; right: -16px; top: 18px; bottom: -48px;
       width: 2px; background: var(--gray200);
     }
-    .tl-item { position: relative; margin-bottom: 48px; }
-    .tl-dot {
-      position: absolute; left: -28px; top: 6px;
-      width: 14px; height: 14px; border-radius: 50%;
-      background: var(--blue); border: 3px solid var(--white);
-      box-shadow: 0 0 0 2px var(--blue);
-    }
     .tl-period {
-      font-size: 12px; font-weight: 600; color: var(--blue);
-      font-family: 'JetBrains Mono', monospace; letter-spacing: .04em;
-      margin-bottom: 6px;
+      font-size: 11px; font-weight: 600; color: var(--blue);
+      font-family: 'JetBrains Mono', monospace; letter-spacing: .03em;
+      line-height: 1.5;
     }
+    .tl-year {
+      font-size: 22px; font-weight: 700; color: var(--navy);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 2px;
+    }
+    .tl-right { padding-top: 0; }
     .tl-title {
-      font-size: 20px; font-weight: 700; color: var(--navy);
-      margin-bottom: 4px;
+      font-size: 18px; font-weight: 700; color: var(--navy);
+      margin-bottom: 3px;
     }
     .tl-role {
-      font-size: 13px; color: var(--gray600); margin-bottom: 14px;
+      font-size: 13px; color: var(--gray400); margin-bottom: 10px;
     }
     .tl-desc {
-      font-size: 14px; color: var(--gray600); line-height: 1.8;
-      margin-bottom: 20px; max-width: 680px;
+      font-size: 13.5px; color: var(--gray600); line-height: 1.8;
+      margin-bottom: 14px; max-width: 600px;
     }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tl-tag {
+      font-size: 11px; font-weight: 500; padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--gray100); color: var(--gray600);
+      border: 1px solid var(--gray200);
+    }
+    .tl-tag.hl { background: #e8edf9; color: #1e3a8a; border-color: #b0c4f0; }
     .tl-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    @media (max-width: 640px) { .tl-cards { grid-template-columns: 1fr; } }
+    @media (max-width: 640px) {
+      .tl-item { grid-template-columns: 1fr; gap: 4px; padding-bottom: 36px; }
+      .tl-left { text-align: left; }
+      .tl-left::after { display: none; }
+      .tl-left::before { display: none; }
+      .tl-cards { grid-template-columns: 1fr; }
+    }
 
     /* ── SKILLS ── */
     .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -716,41 +751,64 @@
 
     <div class="timeline">
 
-      <!-- ── SAP Code 아카데미 (프로젝트 포함) ── -->
+      <!-- ── SAP Code 아카데미 ── -->
       <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-period">2025.10 – 2026.07</div>
-        <div class="tl-title">SAP Code Academy 1기</div>
-        <div class="tl-role">교육 수료 &nbsp;|&nbsp; ABAP · OData · SAP Fiori</div>
-        <div class="tl-desc">
-          SAP ERP 개발 전반을 체계적으로 학습했습니다. ABAP 프로그래밍, OData/SAP Gateway, SAP UI5·Fiori 개발을 집중적으로 교육받았으며,<br/>
-          <strong>2026.03 – 2026.07</strong> 자전거 기업을 선정해 판매(SD)→재무(FI) End-to-End SAP ERP 구축 프로젝트에 참여했습니다.<br/>
-          프로젝트에서 <strong>FI 모듈 전체를 담당</strong>하고 <strong>개발 리드(PL)</strong>를 맡았습니다.
+        <div class="tl-left">
+          <div class="tl-year">2025</div>
+          <div class="tl-period">2025.10<br/>– 2026.07</div>
         </div>
-        <a onclick="showTab('programs', document.querySelector('.nav-links a:nth-child(2)')); return false;" href="#" style="display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;border:1px solid var(--blue);padding:7px 16px;border-radius:8px;transition:background .15s;" onmouseover="this.style.background='#e8edf9'" onmouseout="this.style.background='transparent'">
-          프로젝트 상세 →
-        </a>
-      </div><!-- /tl-item -->
+        <div class="tl-right">
+          <div class="tl-title">SAP Code Academy 1기</div>
+          <div class="tl-role">교육 수료</div>
+          <div class="tl-desc">
+            SAP ERP 개발 전반을 체계적으로 학습했습니다. ABAP 프로그래밍, OData/SAP Gateway, SAP UI5·Fiori를 집중적으로 교육받았으며, 자전거 제조 기업의 판매(SD)→재무(FI) End-to-End ERP 구축 프로젝트에서 <strong>FI 모듈 전담 및 개발 리드(PL)</strong>를 맡았습니다.
+          </div>
+          <div class="tl-tags">
+            <span class="tl-tag hl">ABAP</span>
+            <span class="tl-tag hl">SAP Fiori</span>
+            <span class="tl-tag hl">OData</span>
+            <span class="tl-tag">FI Module</span>
+            <span class="tl-tag">개발 리드</span>
+          </div>
+          <a onclick="showTab('programs', document.querySelector('.nav-links a:nth-child(2)')); return false;" href="#" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--blue);text-decoration:none;border:1px solid var(--blue);padding:6px 14px;border-radius:6px;transition:background .15s;" onmouseover="this.style.background='#e8edf9'" onmouseout="this.style.background='transparent'">
+            프로젝트 상세 →
+          </a>
+        </div>
+      </div>
 
-      <!-- ── 에코아이시티 교육 인턴 ── -->
+      <!-- ── 에코아이시티 ── -->
       <div class="tl-item">
-        <div class="tl-dot" style="background:var(--green); box-shadow:0 0 0 2px var(--green);"></div>
-        <div class="tl-period">2025.04 – 2025.06</div>
-        <div class="tl-title">에코아이시티(EcoICT)</div>
-        <div class="tl-role">교육 인턴 (3개월)</div>
-        <div class="tl-desc">Classic ABAP 문법을 익히고 ALV 리포트 등 기초 프로그램을 구현하며 SAP 개발 기초를 쌓았습니다.</div>
-      </div><!-- /tl-item -->
+        <div class="tl-left">
+          <div class="tl-year" style="color:var(--green);">2025</div>
+          <div class="tl-period">2025.04<br/>– 2025.06</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-title">에코아이시티(EcoICT)</div>
+          <div class="tl-role">교육 인턴 · 3개월</div>
+          <div class="tl-desc">Classic ABAP 문법을 익히고 ALV 리포트 등 기초 프로그램을 구현하며 SAP 개발 기초를 쌓았습니다.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">ABAP</span>
+            <span class="tl-tag">ALV Report</span>
+          </div>
+        </div>
+      </div>
 
       <!-- ── 연세대학교 ── -->
       <div class="tl-item">
-        <div class="tl-dot" style="background:var(--gray400); box-shadow:0 0 0 2px var(--gray400);"></div>
-        <div class="tl-period">2018.03 – 2024.08</div>
-        <div class="tl-title">연세대학교 미래캠퍼스</div>
-        <div class="tl-role">학사 &nbsp;|&nbsp; 환경공학 · 컴퓨터공학 전공</div>
-        <div class="tl-desc">
-          환경공학과 컴퓨터공학을 복수 전공했습니다.<br/><br/>
+        <div class="tl-left">
+          <div class="tl-year" style="color:var(--gray400);">2018</div>
+          <div class="tl-period">2018.03<br/>– 2024.08</div>
         </div>
-      </div><!-- /tl-item -->
+        <div class="tl-right">
+          <div class="tl-title">연세대학교 미래캠퍼스</div>
+          <div class="tl-role">학사</div>
+          <div class="tl-desc">환경공학과 컴퓨터공학을 복수 전공했습니다.</div>
+          <div class="tl-tags">
+            <span class="tl-tag">환경공학</span>
+            <span class="tl-tag">컴퓨터공학</span>
+          </div>
+        </div>
+      </div>
 
     </div><!-- /timeline -->
   </section>
@@ -837,7 +895,7 @@
           <div class="about-icon">🔗</div>
           <div>
             <div class="about-item-title">알고리즘</div>
-            <div class="about-item-sub">백준 (Python)</div>
+            <div class="about-item-sub">백준 (Python) / 프로그래머스 (Programmers)</div>
           </div>
         </div>
       </div>
@@ -1213,7 +1271,7 @@
         <button class="snippet-btn" onclick="showSnippet('s23', this)">
           <span class="stype abap">ABAP</span>매출 GROUP BY 집계
         </button>
-        
+
         <button class="snippet-btn" onclick="showSnippet('s24', this)">
           <span class="stype abap">ABAP</span>등급 재산정 / 여신 MODIFY
         </button>
