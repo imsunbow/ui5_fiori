@@ -1,7 +1,0 @@
-<mvc:View controllerName="code.cl5.practice.codecl5practice.controller.App"
-    displayBlock="true"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <App id="app">
-    </App>
-</mvc:View>

@@ -1,7 +1,0 @@
-<mvc:View controllerName="zcl516.deployedu.code1cl5deployedu.controller.DeployView"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <Text text= "디플로이 성공!!" />
-    </Page>
-</mvc:View>

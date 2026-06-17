@@ -1,9 +1,0 @@
-<mvc:View controllerName="code1.cl5.param.route01.code1cl5paramroute01.controller.MainView"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="MainPage" title="{i18n>title}">
-        <Input id="airLine" placeholder="AirLine" width="7em" />
-        <Input id="connNo" placeholder="Conn No" width="7em" />
-        <Button text="검색" press=".onSearch"/>
-    </Page>
-</mvc:View>
