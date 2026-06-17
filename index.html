@@ -427,6 +427,44 @@
     .about-item-sub   { font-size: 13px; color: var(--gray600); margin-top: 4px; line-height: 1.6; }
     @media(max-width:600px){ .about-section{ grid-template-columns:1fr; padding:40px 20px; } }
 
+    /* ── SCREENSHOT GALLERY ── */
+    .gallery { margin: 20px 0 24px; }
+    .gallery-main {
+      position: relative;
+      background: #0d1117;
+      border: 1px solid var(--gray200);
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      aspect-ratio: 16/6.5;
+    }
+    .gallery-main img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-main img.active { opacity: 1; }
+    .gallery-caption {
+      background: var(--gray50);
+      border: 1px solid var(--gray200); border-top: none;
+      border-radius: 0 0 10px 10px;
+      padding: 10px 16px;
+      font-size: 12.5px; color: var(--gray600); min-height: 38px;
+    }
+    .gallery-thumbs {
+      display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    }
+    .gallery-thumb {
+      width: 80px; height: 52px;
+      border-radius: 6px; overflow: hidden;
+      border: 2px solid var(--gray200);
+      cursor: pointer; transition: border-color .15s;
+      flex-shrink: 0;
+    }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-thumb.active { border-color: var(--blue); }
+    .gallery-thumb:hover { border-color: var(--navy); }
+
     /* ── CARD SNIPPETS ── */
     .card-snippet-toggle {
       display: inline-flex; align-items: center; gap: 6px;
@@ -1060,6 +1098,36 @@
             <span class="tag hl">ALV Grid</span><span class="tag hl">TextEditor</span>
             <span class="tag">전표 밸런스 검증</span><span class="tag">Number Range</span><span class="tag">F4 Value Help</span>
           </div>
+
+          <!-- 스크린샷 갤러리 -->
+          <div class="gallery" id="gallery-p1">
+            <div class="gallery-main">
+              <img src="images/p1_임시전표작성/01.png" class="active" alt="초기 화면"/>
+              <img src="images/p1_임시전표작성/02.png" alt="기본정보 입력"/>
+              <img src="images/p1_임시전표작성/03.png" alt="대변 항목 추가"/>
+              <img src="images/p1_임시전표작성/04.png" alt="전표 생성 확인"/>
+              <img src="images/p1_임시전표작성/05.png" alt="결재 화면 이동"/>
+            </div>
+            <div class="gallery-caption" id="gallery-p1-caption">초기 화면 — 전표 기본정보(회사코드·전표유형·BP번호·적요)와 상세정보를 입력하기 전의 빈 화면입니다.</div>
+            <div class="gallery-thumbs">
+              <div class="gallery-thumb active" onclick="switchGallery('p1',0,'초기 화면 — 전표 기본정보(회사코드·전표유형·BP번호·적요)와 상세정보를 입력하기 전의 빈 화면입니다.',this)">
+                <img src="images/p1_임시전표작성/01.png" alt=""/>
+              </div>
+              <div class="gallery-thumb" onclick="switchGallery('p1',1,'기본정보 입력 — BP번호(BP20000005, Vietnam Rubber Corp), 전표유형 KR(외상매입전표), 적요를 입력하고 첫 번째 차변 항목(G/L 11000020, 1,000,000원)을 추가한 상태입니다.',this)">
+                <img src="images/p1_임시전표작성/02.png" alt=""/>
+              </div>
+              <div class="gallery-thumb" onclick="switchGallery('p1',2,'대변 항목 추가 — G/L 11000010(현금) 1,000,000원 대변 항목을 추가해 차변합=대변합이 맞아 저장가능여부가 활성화된 상태입니다.',this)">
+                <img src="images/p1_임시전표작성/03.png" alt=""/>
+              </div>
+              <div class="gallery-thumb" onclick="switchGallery('p1',3,'전표 생성 확인 팝업 — 전표 생성 버튼 클릭 시 생성 여부를 최종 확인하는 다이얼로그가 표시됩니다.',this)">
+                <img src="images/p1_임시전표작성/04.png" alt=""/>
+              </div>
+              <div class="gallery-thumb" onclick="switchGallery('p1',4,'결재 화면 이동 팝업 — 임시전표번호 9000000040이 채번·저장되고, 결재 화면으로 바로 이동할지 묻는 팝업이 표시됩니다.',this)">
+                <img src="images/p1_임시전표작성/05.png" alt=""/>
+              </div>
+            </div>
+          </div>
+
           <button class="prog-code-btn" onclick="openCode('s1')">코드 보기 →</button>
         </div>
 
@@ -2966,6 +3034,14 @@ lv_xdata = cl_abap_codepage=&gt;convert_to( source = lv_data codepage = <span cl
       next.classList.add('active');
       window.scrollTo(0, 0);
     }
+  }
+
+  function switchGallery(galleryId, index, caption, thumbEl) {
+    const gallery = document.getElementById('gallery-' + galleryId);
+    gallery.querySelectorAll('.gallery-main img').forEach((img, i) => img.classList.toggle('active', i === index));
+    gallery.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumbEl.classList.add('active');
+    document.getElementById('gallery-' + galleryId + '-caption').textContent = caption;
   }
 
   function showProg(id, btn) {
