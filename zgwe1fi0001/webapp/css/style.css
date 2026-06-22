@@ -1,0 +1,1099 @@
+/* =========================================================
+   Aging SAPUI5 Glossy Common Page Template
+   - Class Name: aging*
+   ========================================================= */
+
+:root {
+  --aging-bg: #edf4fb;
+  --aging-card-bg: rgba(255, 255, 255, 0.92);
+  --aging-border: rgba(255, 255, 255, 0.65);
+  --aging-shadow: 0 14px 36px rgba(28, 43, 60, 0.14);
+
+  --aging-primary: #0a6ed1;
+  --aging-primary-dark: #12345b;
+
+  --aging-text-main: #1d2d3e;
+  --aging-text-title: #14283d;
+  --aging-text-sub: #607086;
+  --aging-label: #516274;
+
+  --aging-status-normal: #2e7d32;
+  --aging-status-caution: #b35f00;
+  --aging-status-warning: #e67e3f;
+  --aging-status-danger: #d1495b;
+  --aging-status-critical: #8b0000;
+}
+
+/* =========================================================
+   Page
+   ========================================================= */
+
+/* .agingPage,
+.agingPage .sapMPageEnableScrolling {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(10,110,209,0.16), transparent 34%),
+    radial-gradient(circle at 90% 8%, rgba(18,52,91,0.13), transparent 30%),
+    linear-gradient(180deg, #f3f8fd, var(--aging-bg)) !important;
+} */
+
+.agingPage .agingShell {
+  width: 111.111%;
+  min-height: 111.111%;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  zoom: 0.9;
+}
+
+/* =========================================================
+   Sticky Header
+   ========================================================= */
+
+.agingPage .agingHeroSticky {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding-bottom: 0.35rem;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.agingPage .agingStickyHeader {
+  position: sticky;
+  top: 6.35rem;
+  z-index: 59;
+  padding: 0.25rem 1rem 0.45rem;
+  margin: 0 -1rem;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+.agingPage .agingStickyHeader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.35rem;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+/* =========================================================
+   Hero - Glossy
+   ========================================================= */
+
+.agingPage .agingHero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 88px;
+  padding: 1rem 1.4rem;
+  border-radius: 22px;
+  box-sizing: border-box;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, #1a7ae8 0%, #0a6ed1 45%, #12345b 100%);
+  box-shadow:
+    0 16px 40px rgba(10, 110, 209, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.agingPage .agingHero::before {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -28%;
+  width: 70%;
+  height: 300%;
+  transform: rotate(28deg);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.22), transparent);
+  pointer-events: none;
+}
+
+.agingPage .agingHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 52%);
+  pointer-events: none;
+}
+
+.agingPage .agingHeroTitle,
+.agingPage .agingHeroSub,
+.agingPage .agingHeroMetric {
+  position: relative;
+  z-index: 1;
+}
+
+.agingPage .agingHeroTitle {
+  color: #ffffff;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.agingPage .agingHeroSub {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.84rem;
+  margin-top: 0.25rem;
+}
+
+.agingPage .agingHeroMetrics {
+  gap: 0.75rem;
+}
+
+.agingPage .agingHeroMetric {
+  min-width: 7.5rem;
+  min-height: 3.8rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 14px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.agingPage .agingHeroMetricLabel {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.agingPage .agingHeroMetricValue {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-top: 0.2rem;
+}
+
+/* =========================================================
+   Toolbar / Filter
+   ========================================================= */
+
+.agingPage .agingToolbarLine {
+  gap: 0.5rem;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+
+.agingPage .agingFilterGroup,
+.agingPage .agingToolbarActions {
+  gap: 0.5rem;
+}
+
+.agingPage .agingToolbarActions {
+  margin-left: auto;
+}
+
+.agingPage .agingFilterLabel {
+  color: var(--aging-label);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Card Common - Glossy
+   ========================================================= */
+
+.agingPage .agingKpiCard,
+.agingPage .agingCard {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 253, 0.94));
+  border: 1px solid var(--aging-border);
+  box-shadow:
+    var(--aging-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  box-sizing: border-box;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+
+.agingPage .agingKpiCard::before,
+.agingPage .agingCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.agingPage .agingCard>*,
+.agingPage .agingKpiCard>* {
+  position: relative;
+  z-index: 1;
+}
+
+.agingPage .agingCard .sapMPanelWrappingDiv,
+.agingPage .agingCard .sapMPanelWrappingDivTb {
+  border-bottom: 1px solid rgba(135, 152, 173, 0.16);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.agingPage .agingCard .sapMPanelHdr {
+  color: var(--aging-text-title);
+  font-weight: 900;
+}
+
+.agingPage .agingCard .sapMPanelContent {
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   KPI Icons
+   ========================================================= */
+
+.agingPage .agingKpiIcon,
+.agingPage .agingKpiIconWarn,
+.agingPage .agingKpiIconError {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.agingPage .agingKpiIcon {
+  color: #0a6ed1;
+  background: linear-gradient(135deg, #f3f9ff, #dceeff);
+}
+
+.agingPage .agingKpiIconWarn {
+  color: #b35f00;
+  background: linear-gradient(135deg, #fff9ed, #ffe6bd);
+}
+
+.agingPage .agingKpiIconError {
+  color: #bb0000;
+  background: linear-gradient(135deg, #fff3f3, #ffdada);
+}
+
+/* =========================================================
+   KPI Grid
+   ========================================================= */
+
+.agingPage .agingKpiRow {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.agingPage .agingKpiCard {
+  min-height: 120px;
+  padding: 1rem;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.agingPage .agingKpiCard:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 45px rgba(28, 43, 60, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.agingPage .agingKpiTotal {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(234, 245, 255, 0.92));
+}
+
+.agingPage .agingKpiRisk {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 246, 229, 0.94));
+}
+
+.agingPage .agingKpiCritical {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 235, 238, 0.94));
+}
+
+.agingPage .agingKpiValueCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(235, 250, 246, 0.94));
+}
+
+.agingPage .agingKpiLabel {
+  color: var(--aging-label);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.agingPage .agingKpiValue {
+  color: var(--aging-text-main);
+  font-size: 1.85rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-top: 0.7rem;
+  letter-spacing: -0.03em;
+}
+
+.agingPage .agingKpiHint {
+  color: var(--aging-text-sub);
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+
+/* =========================================================
+   Chart Grid
+   ========================================================= */
+
+.agingPage .agingChartGrid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.agingPage .agingChartCardWide {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.agingPage .agingChartCardWide .sapMPanelContent {
+  padding: 0.5rem 0.75rem 0.75rem;
+}
+
+/* =========================================================
+   Split Work Section
+   ========================================================= */
+
+.agingPage .agingSplitGrid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: 160px;
+}
+
+.agingPage .agingSplitGrid>.sapMFlexItem {
+  min-width: 0;
+  height: 100%;
+}
+
+.agingPage .agingWorkPanel {
+  height: 725px !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+}
+
+.agingPage .agingWorkPanel .sapMPanelContent {
+  height: calc(730px - 2rem) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+  background: transparent !important;
+}
+
+/* =========================================================
+   Risk List
+   ========================================================= */
+
+.agingPage .agingRiskListItem {
+  padding: 0 !important;
+}
+
+.agingPage .agingRiskListItem .sapMLIBContent {
+  padding: 0.55rem 0.75rem;
+}
+
+.agingPage .agingRiskMatnr {
+  color: var(--aging-text-main);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.agingPage .agingRiskMaktx {
+  color: var(--aging-text-sub);
+  font-size: 0.82rem;
+  margin-top: 0.1rem;
+}
+
+.agingPage .agingRiskMetaLabel {
+  color: #7a8796;
+  font-size: 0.72rem;
+}
+
+.agingPage .agingRiskMetaValue,
+.agingPage .agingRiskStock {
+  color: var(--aging-text-main);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.agingPage .agingRiskDays {
+  color: var(--aging-text-main);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+/* =========================================================
+   Detail Area
+   ========================================================= */
+
+.agingPage .agingDetailPanel .sapMPanelContent {
+  padding: 1rem !important;
+}
+
+.agingPage .agingDetailHero {
+  min-height: 120px;
+  box-sizing: border-box;
+  border-radius: 18px;
+}
+
+.agingPage .agingDetailHeroMain {
+  min-width: 0;
+  flex: 1;
+}
+
+.agingPage .agingMaterialImage {
+  flex-shrink: 0;
+  margin-right: 1.75rem;
+  border-radius: 18px;
+  object-fit: fill;
+  background: #eaf4ff;
+  box-shadow:
+    0 12px 28px rgba(28, 43, 60, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.agingPage .agingDetailTitleBlock {
+  min-width: 0;
+  transform: translateX(0.5rem);
+}
+
+.agingPage .agingDetailIntro {
+  color: #5f7187;
+  font-size: 0.95rem;
+  margin-bottom: 0.65rem;
+}
+
+.agingPage .agingDetailTitle {
+  color: var(--aging-text-title);
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.agingPage .agingDetailDays {
+  color: var(--aging-text-title);
+  font-size: 1.7rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.agingPage .agingDetailDaysUnit {
+  color: var(--aging-text-title);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.agingPage .agingDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.agingPage .agingInfoBox {
+  padding: 0.5rem;
+  border-radius: 14px;
+  background: rgba(247, 249, 251, 0.82);
+  border: 1px solid rgba(226, 232, 239, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.agingPage .agingInfoLabel {
+  color: #637488;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.agingPage .agingInfoValue {
+  color: var(--aging-text-main);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+/* =========================================================
+   Table
+   ========================================================= */
+
+.agingPage .sapMListTblHeaderCell {
+  background: rgba(247, 249, 251, 0.92);
+}
+
+.agingPage .sapMColumnHeader .sapMText {
+  color: var(--aging-label);
+  font-weight: 900;
+}
+
+/* =========================================================
+   Action Mobile / Desktop
+   ========================================================= */
+
+.agingPage .agingMobileOnly {
+  display: none;
+}
+
+.agingPage .agingDesktopOnly {
+  display: block;
+}
+
+.agingPage .agingActionMobileItem {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #e2e8ef;
+}
+
+.agingPage .agingActionMobileMeta {
+  gap: 0.75rem;
+  margin-top: 0.55rem;
+  color: var(--aging-text-sub);
+  font-size: 0.82rem;
+}
+
+.agingPage .agingActionMobileText {
+  margin-top: 0.45rem;
+  color: var(--aging-label);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+/* =========================================================
+   Status Badge
+   ========================================================= */
+
+.agingPage .sapMObjStatus.agingStatusNormal,
+.agingPage .sapMObjStatus.agingStatusCaution,
+.agingPage .sapMObjStatus.agingStatusWarning,
+.agingPage .sapMObjStatus.agingStatusDanger,
+.agingPage .sapMObjStatus.agingStatusCritical {
+  min-width: 4.5rem;
+  height: 1.75rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  justify-content: center;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.agingPage .sapMObjStatus.agingStatusNormal {
+  background: #edf8ef !important;
+  border: 1px solid #b7dfbf !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusCaution {
+  background: #fff8df !important;
+  border: 1px solid #f3d881 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusWarning {
+  background: #fff1e4 !important;
+  border: 1px solid #efbd8b !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusDanger {
+  background: #fdeff5 !important;
+  border: 1px solid #e8aecb !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusCritical {
+  background: #fdecec !important;
+  border: 1px solid #e3a3a3 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusNormal .sapMObjStatusText {
+  color: var(--aging-status-normal) !important;
+  font-weight: 900 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusCaution .sapMObjStatusText {
+  color: var(--aging-status-caution) !important;
+  font-weight: 900 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusWarning .sapMObjStatusText {
+  color: var(--aging-status-warning) !important;
+  font-weight: 900 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusDanger .sapMObjStatusText {
+  color: var(--aging-status-danger) !important;
+  font-weight: 900 !important;
+}
+
+.agingPage .sapMObjStatus.agingStatusCritical .sapMObjStatusText {
+  color: var(--aging-status-critical) !important;
+  font-weight: 900 !important;
+}
+
+/* =========================================================
+   Risk Analyze Dialog - Desktop
+   ========================================================= */
+
+.agingRiskDialog.sapMDialog {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22) !important;
+}
+
+.agingRiskDialog .sapMDialogTitleGroup {
+  border-bottom: 1px solid rgba(135, 152, 173, 0.18) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(12px);
+}
+
+.agingRiskDialog .sapMDialogTitle {
+  color: var(--aging-text-title) !important;
+  font-size: 1.25rem !important;
+  font-weight: 900 !important;
+}
+
+.agingRiskDialog .sapMDialogScrollCont {
+  padding: 1rem !important;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(10, 110, 209, 0.12), transparent 36%),
+    #f4f8fc !important;
+}
+
+.agingRiskDialog .sapMDialogFooter {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-top: 1px solid rgba(135, 152, 173, 0.18) !important;
+  backdrop-filter: blur(12px);
+}
+
+.agingRiskDialog .sapMBar {
+  background: transparent !important;
+}
+
+.agingRiskDialogInfo {
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eaf4ff, #dff1ff);
+  border: 1px solid #6bbcff;
+  color: #12345b;
+  font-weight: 800;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.agingRiskDialogItem {
+  padding: 0.9rem 1rem;
+  margin-top: 0.75rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 10px 24px rgba(28, 43, 60, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+.agingPage .agingSimulatorBox {
+  padding: 1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(235, 247, 255, 0.94));
+  border: 1px solid rgba(135, 152, 173, 0.2);
+  box-shadow:
+    0 10px 24px rgba(28, 43, 60, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.agingPage .agingSimulatorTitle {
+  color: var(--aging-text-title);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.agingPage .agingSimulatorSub {
+  color: var(--aging-text-sub);
+  font-size: 0.78rem;
+  margin-top: 0.2rem;
+}
+
+.agingPage .agingSimulatorGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .agingPage .agingKpiRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agingPage .agingChartGrid,
+  .agingPage .agingSplitGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .agingPage .agingHero {
+    align-items: flex-start !important;
+  }
+
+  .agingPage .agingHeroMetrics {
+    margin-top: 0.75rem;
+  }
+
+  .agingPage .agingSimulatorGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .agingPage .agingShell {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .agingPage .agingHeroSticky {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(237, 244, 251, 0.94);
+    backdrop-filter: blur(14px);
+    padding-bottom: 0.45rem;
+  }
+
+  .agingPage .agingHero {
+    position: relative;
+    padding: 0.9rem 1rem;
+  }
+
+  .agingPage .agingHeroTitle {
+    font-size: 1.15rem;
+  }
+
+  .agingPage .agingHeroSub {
+    font-size: 0.74rem;
+  }
+
+  .agingPage .agingHeroMetrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+  }
+
+  .agingPage .agingHeroMetric {
+    width: 100%;
+    min-width: 0;
+    min-height: 3.2rem;
+    padding: 0.45rem;
+    border-radius: 12px;
+  }
+
+  .agingPage .agingHeroMetricLabel {
+    font-size: 0.58rem;
+    line-height: 1.1;
+  }
+
+  .agingPage .agingHeroMetricValue {
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+    white-space: nowrap;
+  }
+
+  .agingPage .agingStickyHeader {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    margin: 0 !important;
+    padding: 0.55rem 0.75rem !important;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: var(--aging-shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .agingPage .agingStickyHeader::before {
+    display: none !important;
+  }
+
+  .agingPage .agingToolbarLine.sapMFlexBox {
+    position: static !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.55rem !important;
+    padding-top: 0 !important;
+  }
+
+  .agingPage .agingFilterGroup.sapMFlexBox {
+    display: grid !important;
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+    column-gap: 0.6rem !important;
+    row-gap: 0.45rem !important;
+    width: 100%;
+    align-items: center !important;
+  }
+
+  .agingPage .agingFilterGroup>.sapMFlexItem {
+    min-width: 0;
+    margin-left: 0 !important;
+  }
+
+  .agingPage .agingFilterGroup .sapUiSmallMarginBegin {
+    margin-left: 0 !important;
+  }
+
+  .agingPage .agingFilterLabel {
+    display: block !important;
+    margin: 0 !important;
+    color: var(--aging-label);
+    font-size: 0.78rem !important;
+    font-weight: 900 !important;
+    white-space: nowrap !important;
+  }
+
+  .agingPage .agingFilterGroup .sapMInputBase,
+  .agingPage .agingFilterGroup .sapMSlt {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 2rem !important;
+  }
+
+  .agingPage .agingFilterGroup .sapMInputBaseInner,
+  .agingPage .agingFilterGroup .sapMSltLabel {
+    height: 2rem !important;
+    line-height: 2rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .agingPage .agingFilterGroup .sapMBtn {
+    grid-column: 1 / 3;
+    justify-self: end;
+    width: auto !important;
+    min-width: auto !important;
+    height: 1.95rem !important;
+    margin-left: 0 !important;
+  }
+
+  .agingPage .agingFilterGroup>.sapMFlexItem:last-child {
+    grid-column: 1 / 3 !important;
+    justify-self: end !important;
+    width: auto !important;
+  }
+
+  .agingPage .agingFilterGroup>.sapMFlexItem:last-child .sapMBtn {
+    width: auto !important;
+    min-width: auto !important;
+  }
+
+  .agingPage .agingFilterGroup .sapMBtnInner {
+    width: auto !important;
+    min-width: auto !important;
+    height: 1.95rem !important;
+    line-height: 1.95rem !important;
+    padding: 0 0.75rem !important;
+    box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem;
+  }
+
+  .agingPage .agingFilterGroup .sapMBtnContent {
+    font-size: 0.72rem !important;
+    font-weight: 800;
+    line-height: 1.95rem !important;
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .agingPage .agingFilterGroup .sapMBtnIcon {
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+
+  .agingPage .agingToolbarActions.sapMFlexBox {
+    width: 100%;
+    margin: 0 !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .agingPage .agingToolbarActions>.sapMFlexItem {
+    width: auto !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .agingPage .agingToolbarActions .sapMBtn {
+    width: auto !important;
+    min-width: auto !important;
+    height: 1.95rem !important;
+    margin-left: 0 !important;
+  }
+
+  .agingPage .agingToolbarActions .sapMBtnInner {
+    width: auto !important;
+    min-width: auto !important;
+    height: 1.95rem !important;
+    line-height: 1.95rem !important;
+    padding: 0 0.7rem !important;
+    box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem;
+  }
+
+  .agingPage .agingToolbarActions .sapMBtnContent {
+    font-size: 0.72rem !important;
+    font-weight: 800;
+    line-height: 1.95rem !important;
+    max-width: none !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+  }
+
+  .agingPage .agingToolbarActions .sapMBtnIcon {
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+
+  .agingPage .agingKpiRow,
+  .agingPage .agingChartGrid,
+  .agingPage .agingSplitGrid,
+  .agingPage .agingDetailGrid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .agingPage .agingKpiCard {
+    min-height: 104px;
+    padding: 0.85rem;
+  }
+
+  .agingPage .agingKpiValue {
+    font-size: 1.55rem;
+  }
+
+  .agingPage .agingDesktopOnly {
+    display: none !important;
+  }
+
+  .agingPage .agingMobileOnly {
+    display: block !important;
+  }
+
+  .agingPage .agingWorkPanel {
+    height: auto !important;
+  }
+
+  .agingPage .agingWorkPanel .sapMPanelContent {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .agingPage .agingMaterialImage {
+    width: 120px !important;
+    height: 76px !important;
+    margin-right: 0.8rem;
+  }
+
+  .agingPage .agingDetailTitle {
+    font-size: 1.25rem;
+  }
+
+  .agingPage .agingDetailHero {
+    min-height: auto;
+  }
+
+  .agingRiskDialog.sapMDialog {
+    width: calc(100% - 2rem) !important;
+    max-width: calc(100% - 2rem) !important;
+    height: 82vh !important;
+    max-height: 82vh !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+  }
+
+  .agingRiskDialog .sapMDialogSection {
+    height: calc(82vh - 7rem) !important;
+    overflow: hidden !important;
+  }
+
+  .agingRiskDialog .sapMDialogScrollCont {
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 0.75rem !important;
+    background: #eef3f8 !important;
+    box-sizing: border-box !important;
+  }
+
+  .agingRiskDialog .sapMDialogFooter {
+    display: block !important;
+    background: #ffffff !important;
+    border-top: 1px solid rgba(135, 152, 173, 0.18) !important;
+  }
+
+  .agingRiskDialog .sapMDialogFooter .sapMBar {
+    height: 3.5rem !important;
+    min-height: 3.5rem !important;
+    padding: 0.55rem 0.75rem !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+  .agingRiskDialog .sapMDialogFooter .sapMBarRight {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 0.5rem !important;
+  }
+
+  .agingRiskDialog .sapMDialogFooter .sapMBtnInner {
+    height: 2rem !important;
+    line-height: 2rem !important;
+    padding: 0 0.8rem !important;
+  }
+
+  .agingRiskDialog .sapMDialogFooter .sapMBtnContent {
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+
+  .agingPage .agingSimulatorGrid {
+    grid-template-columns: 1fr;
+  }
+}
