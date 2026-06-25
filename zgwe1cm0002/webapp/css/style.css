@@ -1,0 +1,681 @@
+/* =========================================================
+   Aging SAPUI5 Glossy Common Page Template
+   - Class Name: aging*
+   ========================================================= */
+
+:root {
+  --aging-bg: #edf4fb;
+  --aging-card-bg: rgba(255, 255, 255, 0.92);
+  --aging-border: rgba(255, 255, 255, 0.65);
+  --aging-shadow: 0 14px 36px rgba(28, 43, 60, 0.14);
+
+  --aging-primary: #0a6ed1;
+  --aging-primary-dark: #12345b;
+
+  --aging-text-main: #1d2d3e;
+  --aging-text-title: #14283d;
+  --aging-text-sub: #607086;
+  --aging-label: #516274;
+
+  --aging-status-normal: #2e7d32;
+  --aging-status-caution: #b35f00;
+  --aging-status-warning: #e67e3f;
+  --aging-status-danger: #d1495b;
+  --aging-status-critical: #8b0000;
+}
+
+/* =========================================================
+   Page 바디 배경
+   ========================================================= */
+
+.sapMPage > section {
+  background: var(--aging-bg, #edf4fb) !important;
+}
+
+/* =========================================================
+   전체 Panel Glossy 오버라이드
+   ========================================================= */
+
+.sapMPanel {
+  border-radius: 22px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,253,0.94)) !important;
+  border: 1px solid rgba(255,255,255,0.65) !important;
+  box-shadow: 0 14px 36px rgba(28,43,60,0.14), inset 0 1px 0 rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(14px) !important;
+}
+.sapMPanel > .sapMPanelHdr {
+  background: rgba(255,255,255,0.88) !important;
+  color: var(--aging-text-title, #14283d) !important;
+  border-radius: 22px 22px 0 0 !important;
+  border-bottom: 1px solid rgba(135,152,173,0.16) !important;
+  font-weight: 900 !important;
+  backdrop-filter: blur(10px) !important;
+}
+.sapMPanel > .sapMPanelHdr .sapMPanelHeaderIcon {
+  color: var(--aging-primary, #0a6ed1) !important;
+}
+
+/* =========================================================
+   차트 패널 Glossy (overviewChartPanel)
+   ========================================================= */
+
+.overviewChartPanel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px !important;
+  background: linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(240,247,255,0.93) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.75) !important;
+  box-shadow:
+    0 14px 36px rgba(28,43,60,0.13),
+    inset 0 1px 0 rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(18px) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+.overviewChartPanel:hover {
+  transform: translateY(-3px) !important;
+  box-shadow:
+    0 20px 48px rgba(28,43,60,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.98) !important;
+}
+
+/* 색상별 glossy 변형 */
+.ovChartBlue {
+  background: linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(220,235,255,0.92) 100%) !important;
+  border: 1px solid rgba(100,170,255,0.35) !important;
+  box-shadow: 0 14px 36px rgba(26,122,232,0.13), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+.ovChartBlue:hover { box-shadow: 0 20px 48px rgba(26,122,232,0.22), inset 0 1px 0 rgba(255,255,255,0.98) !important; }
+
+.ovChartOrange {
+  background: linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(255,236,210,0.92) 100%) !important;
+  border: 1px solid rgba(232,146,26,0.30) !important;
+  box-shadow: 0 14px 36px rgba(232,146,26,0.13), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+.ovChartOrange:hover { box-shadow: 0 20px 48px rgba(232,146,26,0.22), inset 0 1px 0 rgba(255,255,255,0.98) !important; }
+
+.ovChartRed {
+  background: linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(255,218,218,0.92) 100%) !important;
+  border: 1px solid rgba(187,0,0,0.25) !important;
+  box-shadow: 0 14px 36px rgba(187,0,0,0.11), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+.ovChartRed:hover { box-shadow: 0 20px 48px rgba(187,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.98) !important; }
+
+.ovChartGreen {
+  background: linear-gradient(160deg, rgba(255,255,255,0.97) 0%, rgba(210,240,218,0.92) 100%) !important;
+  border: 1px solid rgba(46,125,50,0.28) !important;
+  box-shadow: 0 14px 36px rgba(46,125,50,0.12), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+}
+.ovChartGreen:hover { box-shadow: 0 20px 48px rgba(46,125,50,0.20), inset 0 1px 0 rgba(255,255,255,0.98) !important; }
+
+/* 상단 광택 레이어 */
+.overviewChartPanel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.60), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+/* 패널 헤더 */
+.overviewChartPanel .sapMPanelHdr {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88) !important;
+  border-bottom: 1px solid rgba(135,152,173,0.16) !important;
+  border-radius: 22px 22px 0 0 !important;
+  backdrop-filter: blur(10px) !important;
+  color: var(--aging-text-title, #14283d) !important;
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
+}
+/* 패널 콘텐츠 */
+.overviewChartPanel .sapMPanelContent {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  padding: 0.5rem 0.75rem 0.75rem !important;
+}
+
+/* =========================================================
+   차트 2x2 레이아웃
+   ========================================================= */
+
+.agingPage .ovChartArea.sapMVBox {
+  overflow: hidden !important;
+  gap: 1rem !important;
+}
+.agingPage .ovChartArea .ovChartRow.sapMHBox {
+  gap: 1rem !important;
+}
+.agingPage .ovChartArea .overviewChartPanel.sapMPanel {
+  height: 320px !important;
+  flex: 1 1 0% !important;
+  overflow: hidden !important;
+}
+.agingPage .ovChartArea .overviewChartPanel .sapMPanelContent {
+  height: calc(100% - 2.75rem) !important;
+  overflow: hidden !important;
+  padding: 0.25rem 0.5rem !important;
+}
+.ovChartGap {
+  margin-right: 0 !important;
+}
+
+/* =========================================================
+   VizFrame Glossy 효과
+   ========================================================= */
+
+.ovVizFrame {
+  position: relative !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+.ovVizFrame::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 48%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.28) 0%,
+    rgba(255,255,255,0.10) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 10px 10px 0 0;
+}
+/* 도넛 슬라이스 광택 */
+.ovVizFrame svg path[fill] {
+  filter: brightness(1.1) saturate(1.2) drop-shadow(0 2px 5px rgba(0,0,0,0.18)) !important;
+}
+/* 색상별 glow */
+.ovChartBlue   .ovVizFrame svg path[fill] { filter: brightness(1.1) saturate(1.2) drop-shadow(0 4px 10px rgba(26,122,232,0.35)) !important; }
+.ovChartOrange .ovVizFrame svg path[fill] { filter: brightness(1.1) saturate(1.2) drop-shadow(0 4px 10px rgba(232,146,26,0.35)) !important; }
+.ovChartRed    .ovVizFrame svg path[fill] { filter: brightness(1.1) saturate(1.2) drop-shadow(0 4px 10px rgba(187,0,0,0.30)) !important; }
+.ovChartGreen  .ovVizFrame svg path[fill] { filter: brightness(1.1) saturate(1.2) drop-shadow(0 4px 10px rgba(46,125,50,0.35)) !important; }
+
+/* =========================================================
+   사원 테이블 (empTable) Glossy
+   ========================================================= */
+
+[id$="--empTable"] .sapMListTblHeader {
+  background: rgba(247,249,251,0.92) !important;
+}
+[id$="--empTable"] .sapMListTblHeaderCell {
+  color: var(--aging-label, #516274) !important;
+  font-weight: 900 !important;
+  border-bottom: 2px solid rgba(135,152,173,0.25) !important;
+}
+[id$="--empTable"] .sapMTBHeader {
+  background: rgba(255,255,255,0.88) !important;
+  border-bottom: 1px solid rgba(135,152,173,0.16) !important;
+  backdrop-filter: blur(10px) !important;
+}
+[id$="--empTable"] .sapMTBHeader .sapMTitle {
+  color: var(--aging-text-title, #14283d) !important;
+  font-weight: 900 !important;
+}
+[id$="--empTable"] .sapMLIB:nth-child(even) {
+  background: rgba(248,250,253,0.7) !important;
+}
+[id$="--empTable"] .sapMLIB:nth-child(odd) {
+  background: rgba(255,255,255,0.9) !important;
+}
+[id$="--empTable"] .sapMLIB:hover {
+  background: rgba(234,244,255,0.85) !important;
+  transition: background 0.15s ease !important;
+}
+
+/* =========================================================
+   코스트센터 테이블 (ccTable) Glossy
+   ========================================================= */
+
+[id$="--ccTable"] .sapMListTblHeader {
+  background: rgba(247,249,251,0.92) !important;
+}
+[id$="--ccTable"] .sapMListTblHeaderCell {
+  color: var(--aging-label, #516274) !important;
+  font-weight: 900 !important;
+  border-bottom: 2px solid rgba(135,152,173,0.25) !important;
+}
+[id$="--ccTable"] .sapMTBHeader {
+  background: rgba(255,255,255,0.88) !important;
+  border-bottom: 1px solid rgba(135,152,173,0.16) !important;
+  backdrop-filter: blur(10px) !important;
+}
+[id$="--ccTable"] .sapMTBHeader .sapMTitle {
+  color: var(--aging-text-title, #14283d) !important;
+  font-weight: 900 !important;
+}
+[id$="--ccTable"] .sapMLIB:nth-child(even) {
+  background: rgba(248,250,253,0.7) !important;
+}
+[id$="--ccTable"] .sapMLIB:nth-child(odd) {
+  background: rgba(255,255,255,0.9) !important;
+}
+[id$="--ccTable"] .sapMLIB:hover {
+  background: rgba(234,244,255,0.85) !important;
+  transition: background 0.15s ease !important;
+}
+
+/* =========================================================
+   Page
+   ========================================================= */
+
+.agingPage .agingShell {
+  width: 111.111%;
+  min-height: 111.111%;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  zoom: 0.9;
+}
+
+/* =========================================================
+   Sticky Header
+   ========================================================= */
+
+.agingPage .agingHeroSticky {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding-bottom: 0.35rem;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.agingPage .agingStickyHeader {
+  position: sticky;
+  top: 6.35rem;
+  z-index: 59;
+  padding: 0.25rem 1rem 0.45rem;
+  margin: 0 -1rem;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+  box-sizing: border-box;
+}
+
+.agingPage .agingStickyHeader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.35rem;
+  bottom: 0;
+  z-index: -1;
+  background: rgba(237, 244, 251, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+/* =========================================================
+   Hero - Glossy
+   ========================================================= */
+
+.agingPage .agingHero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 88px;
+  padding: 1rem 1.4rem;
+  border-radius: 22px;
+  box-sizing: border-box;
+  color: #ffffff;
+  background:
+    linear-gradient(135deg, #1a7ae8 0%, #0a6ed1 45%, #12345b 100%);
+  box-shadow:
+    0 16px 40px rgba(10, 110, 209, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.agingPage .agingHero::before {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -28%;
+  width: 70%;
+  height: 300%;
+  transform: rotate(28deg);
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.22), transparent);
+  pointer-events: none;
+}
+
+.agingPage .agingHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 52%);
+  pointer-events: none;
+}
+
+.agingPage .agingHeroTitle,
+.agingPage .agingHeroSub,
+.agingPage .agingHeroMetric {
+  position: relative;
+  z-index: 1;
+}
+
+.agingPage .agingHeroTitle {
+  color: #ffffff;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.agingPage .agingHeroSub {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.84rem;
+  margin-top: 0.25rem;
+}
+
+.agingPage .agingHeroMetrics {
+  gap: 0.75rem;
+}
+
+.agingPage .agingHeroMetric {
+  min-width: 7.5rem;
+  min-height: 3.8rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 14px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.agingPage .agingHeroMetricLabel {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.agingPage .agingHeroMetricValue {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-top: 0.2rem;
+}
+
+/* =========================================================
+   Toolbar / Filter
+   ========================================================= */
+
+.agingPage .agingToolbarLine {
+  gap: 0.5rem;
+  padding-top: 0;
+  box-sizing: border-box;
+}
+
+.agingPage .agingFilterGroup,
+.agingPage .agingToolbarActions {
+  gap: 0.5rem;
+}
+
+.agingPage .agingToolbarActions {
+  margin-left: auto;
+}
+
+.agingPage .agingFilterLabel {
+  color: var(--aging-label);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   Card Common - Glossy
+   ========================================================= */
+
+.agingPage .agingKpiCard,
+.agingPage .agingCard {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 253, 0.94));
+  border: 1px solid var(--aging-border);
+  box-shadow:
+    var(--aging-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  box-sizing: border-box;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+
+.agingPage .agingKpiCard::before,
+.agingPage .agingCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.agingPage .agingCard>*,
+.agingPage .agingKpiCard>* {
+  position: relative;
+  z-index: 1;
+}
+
+.agingPage .agingCard .sapMPanelWrappingDiv,
+.agingPage .agingCard .sapMPanelWrappingDivTb {
+  border-bottom: 1px solid rgba(135, 152, 173, 0.16);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.agingPage .agingCard .sapMPanelHdr {
+  color: var(--aging-text-title);
+  font-weight: 900;
+}
+
+.agingPage .agingCard .sapMPanelContent {
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   KPI Icons
+   ========================================================= */
+
+.agingPage .agingKpiIcon,
+.agingPage .agingKpiIconWarn,
+.agingPage .agingKpiIconError {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.agingPage .agingKpiIcon {
+  color: #0a6ed1;
+  background: linear-gradient(135deg, #f3f9ff, #dceeff);
+}
+
+.agingPage .agingKpiIconWarn {
+  color: #b35f00;
+  background: linear-gradient(135deg, #fff9ed, #ffe6bd);
+}
+
+.agingPage .agingKpiIconError {
+  color: #bb0000;
+  background: linear-gradient(135deg, #fff3f3, #ffdada);
+}
+
+/* =========================================================
+   KPI Grid
+   ========================================================= */
+
+.agingPage .agingKpiRow {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.agingPage .agingKpiCard {
+  min-height: 120px;
+  padding: 1rem;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.agingPage .agingKpiCard:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 45px rgba(28, 43, 60, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.agingPage .agingKpiTotal {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(234, 245, 255, 0.92));
+}
+
+.agingPage .agingKpiRisk {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 246, 229, 0.94));
+}
+
+.agingPage .agingKpiCritical {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 235, 238, 0.94));
+}
+
+.agingPage .agingKpiValueCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(235, 250, 246, 0.94));
+}
+
+.agingPage .agingKpiLabel {
+  color: var(--aging-label);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.agingPage .agingKpiValue {
+  color: var(--aging-text-main);
+  font-size: 1.85rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-top: 0.7rem;
+  letter-spacing: -0.03em;
+}
+
+.agingPage .agingKpiHint {
+  color: var(--aging-text-sub);
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+
+/* =========================================================
+   Chart Grid
+   ========================================================= */
+
+.agingPage .agingChartGrid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.agingPage .agingChartCardWide {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   Table
+   ========================================================= */
+
+.agingPage .sapMListTblHeaderCell {
+  background: rgba(247, 249, 251, 0.92);
+}
+
+.agingPage .sapMColumnHeader .sapMText {
+  color: var(--aging-label);
+  font-weight: 900;
+}
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .agingPage .agingKpiRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agingPage .agingChartGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .agingPage .agingHero {
+    align-items: flex-start !important;
+  }
+
+  .agingPage .agingHeroMetrics {
+    margin-top: 0.75rem;
+  }
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .agingPage .agingShell {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .agingPage .agingKpiRow,
+  .agingPage .agingChartGrid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .agingPage .agingKpiCard {
+    min-height: 104px;
+    padding: 0.85rem;
+  }
+
+  .agingPage .agingKpiValue {
+    font-size: 1.55rem;
+  }
+}
+
+/* =========================================================
+   FLP 전체 너비
+   ========================================================= */
+
+.sapUShellApplicationContainer,
+.sapUShellApplicationContainerLimitedWidth,
+.sapUShellAppInSandbox,
+.sapUiUfdShellCntnt,
+.sapUShellCanvas,
+.sapMApp,
+.sapUShellContentDiv {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
