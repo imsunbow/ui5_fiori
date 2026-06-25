@@ -1,0 +1,240 @@
+<mvc:View controllerName="zgwe1fi0002.zgwe1fi0002.controller.DunningView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:vizData="sap.viz.ui5.data"
+    xmlns:vizFeeds="sap.viz.ui5.controls.common.feeds">
+
+    <Page id="page" showNavButton="true" navButtonPress="onNavBack" showHeader="false" class="agingPage">
+
+        <!-- Hero 타이틀 -->
+        <VBox class="agingHeroSticky sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+            <FlexBox fitContainer="true" class="agingHero" justifyContent="SpaceBetween" alignItems="Center">
+                <VBox>
+                    <Title text="지급 독촉 내역" class="agingHeroTitle" titleStyle="H4"/>
+                    <Text text="미결 채권에 대한 독촉 현황을 조회하고 관리합니다." class="agingHeroSub"/>
+                </VBox>
+                <FlexBox class="agingHeroMetrics" wrap="Wrap" renderType="Bare" alignItems="Center">
+                    <VBox class="agingHeroMetric">
+                        <Text text="미결 독촉건수" class="agingHeroMetricLabel"/>
+                        <Text text="{= ${view>/totalCount} + '건'}" class="agingHeroMetricValue"/>
+                    </VBox>
+                    <VBox class="agingHeroMetric">
+                        <Text text="총 미납액" class="agingHeroMetricLabel"/>
+                        <Text text="{= ${view>/totalAmount} + '' + ${view>/totalAmountScale} + '원'}" class="agingHeroMetricValue"/>
+                    </VBox>
+                    <VBox class="agingHeroMetric">
+                        <Text text="최대 연체일" class="agingHeroMetricLabel"/>
+                        <Text text="{= ${view>/maxOverdue} + '일'}" class="agingHeroMetricValue"/>
+                    </VBox>
+                    <VBox class="agingHeroMetric">
+                        <Text text="평균 연체일" class="agingHeroMetricLabel"/>
+                        <Text text="{= ${view>/avgOverdue} + '일'}" class="agingHeroMetricValue"/>
+                    </VBox>
+                </FlexBox>
+            </FlexBox>
+        </VBox>
+
+        <!-- 필터 영역 -->
+        <Panel id="filterPanel" headerText="조회 조건" expandable="true" expanded="true"
+               class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+            <content>
+                <Toolbar id="filterToolbar" style="Clear">
+                    <Label text="고객사 번호" labelFor="inputPartner" design="Bold"/>
+                    <Input id="inputPartner" placeholder="고객번호" width="160px" submit="onSearch"
+                   showValueHelp="true" valueHelpRequest="onPartnerValueHelp"/>
+                    <ToolbarSeparator/>
+                    <Label text="회사코드" labelFor="inputBukrs" design="Bold"/>
+                    <Input id="inputBukrs" placeholder="회사코드" width="80px"/>
+                    <ToolbarSeparator/>
+                    <Label text="연체일" labelFor="inputOverdue" design="Bold"/>
+                    <Input id="inputOverdue" placeholder="연체일" width="80px" type="Number"/>
+                    <ToolbarSpacer/>
+                    <Button text="조회" icon="sap-icon://search" press="onSearch" type="Emphasized"/>
+                    <Button text="초기화" icon="sap-icon://refresh" press="onReset"/>
+                </Toolbar>
+            </content>
+        </Panel>
+
+        <!-- 차트 영역 2x2 -->
+        <VBox class="sapUiSmallMarginBeginEnd sapUiMediumMarginTop sapUiSmallMarginBottom ovChartArea">
+
+            <!-- 상단 행: 연체 구간별 건수 / 고객별 미납액 TOP5 -->
+            <HBox class="ovChartRow" alignItems="Stretch">
+                <Panel headerText="연체 구간별 건수" class="ovChartGap overviewChartPanel ovChartBlue">
+                    <layoutData><FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%"/></layoutData>
+                    <viz:VizFrame id="dunnRangeChart" vizType="bar" height="100%" width="100%"
+                                  class="ovVizFrame" uiConfig="{applicationSet:'fiori'}"
+                                  vizProperties="{
+                                    title:{visible:false},
+                                    legend:{visible:false},
+                                    plotArea:{colorPalette:['#1a7ae8'],background:{visible:true,gradientEnabled:true,color:'rgba(220,235,255,0.35)'}}
+                                  }">
+                        <viz:dataset>
+                            <vizData:FlattenedDataset data="{dunn>/overdueRanges}">
+                                <vizData:dimensions><vizData:DimensionDefinition name="구간" value="{label}"/></vizData:dimensions>
+                                <vizData:measures><vizData:MeasureDefinition name="건수" value="{count}"/></vizData:measures>
+                            </vizData:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <vizFeeds:FeedItem uid="valueAxis"    type="Measure"   values="건수"/>
+                            <vizFeeds:FeedItem uid="categoryAxis" type="Dimension" values="구간"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+
+                <Panel headerText="고객별 미납액 TOP 5" class="overviewChartPanel ovChartOrange">
+                    <layoutData><FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%"/></layoutData>
+                    <viz:VizFrame id="dunnAmtChart" vizType="column" height="100%" width="100%"
+                                  class="ovVizFrame" uiConfig="{applicationSet:'fiori'}"
+                                  vizProperties="{
+                                    title:{visible:false},
+                                    legend:{visible:false},
+                                    plotArea:{colorPalette:['#e8921a'],background:{visible:true,gradientEnabled:true,color:'rgba(255,236,210,0.35)'}}
+                                  }">
+                        <viz:dataset>
+                            <vizData:FlattenedDataset data="{dunn>/customerTop5}">
+                                <vizData:dimensions><vizData:DimensionDefinition name="고객" value="{label}"/></vizData:dimensions>
+                                <vizData:measures><vizData:MeasureDefinition name="금액" value="{amount}"/></vizData:measures>
+                            </vizData:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <vizFeeds:FeedItem uid="valueAxis"    type="Measure"   values="금액"/>
+                            <vizFeeds:FeedItem uid="categoryAxis" type="Dimension" values="고객"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+            </HBox>
+
+            <!-- 하단 행: 등급별 분포 / 반제상태 분포 -->
+            <HBox class="ovChartRow" alignItems="Stretch">
+                <Panel headerText="독촉 등급별 분포" class="ovChartGap overviewChartPanel ovChartRed">
+                    <layoutData><FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%"/></layoutData>
+                    <viz:VizFrame id="dunnLprioChart" vizType="donut" height="100%" width="100%"
+                                  class="ovVizFrame" uiConfig="{applicationSet:'fiori'}"
+                                  vizProperties="{
+                                    title:{visible:false},
+                                    legend:{visible:true,position:'right'},
+                                    plotArea:{colorPalette:['#bb0000','#e8921a','#2e7d32'],background:{visible:true,gradientEnabled:true,color:'rgba(255,218,218,0.35)'}}
+                                  }">
+                        <viz:dataset>
+                            <vizData:FlattenedDataset data="{dunn>/lprioDistribution}">
+                                <vizData:dimensions><vizData:DimensionDefinition name="등급" value="{label}"/></vizData:dimensions>
+                                <vizData:measures><vizData:MeasureDefinition name="건수" value="{count}"/></vizData:measures>
+                            </vizData:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <vizFeeds:FeedItem uid="size"  type="Measure"   values="건수"/>
+                            <vizFeeds:FeedItem uid="color" type="Dimension" values="등급"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+
+                <Panel headerText="반제상태 현황" class="overviewChartPanel ovChartGreen">
+                    <layoutData><FlexItemData growFactor="1" shrinkFactor="1" baseSize="0%"/></layoutData>
+                    <viz:VizFrame id="dunnStatusChart" vizType="donut" height="100%" width="100%"
+                                  class="ovVizFrame" uiConfig="{applicationSet:'fiori'}"
+                                  vizProperties="{
+                                    title:{visible:false},
+                                    legend:{visible:true,position:'right'},
+                                    plotArea:{colorPalette:['#bb0000','#e8921a','#2e7d32'],background:{visible:true,gradientEnabled:true,color:'rgba(210,240,218,0.35)'}}
+                                  }">
+                        <viz:dataset>
+                            <vizData:FlattenedDataset data="{dunn>/statusDistribution}">
+                                <vizData:dimensions><vizData:DimensionDefinition name="상태" value="{label}"/></vizData:dimensions>
+                                <vizData:measures><vizData:MeasureDefinition name="건수" value="{count}"/></vizData:measures>
+                            </vizData:FlattenedDataset>
+                        </viz:dataset>
+                        <viz:feeds>
+                            <vizFeeds:FeedItem uid="size"  type="Measure"   values="건수"/>
+                            <vizFeeds:FeedItem uid="color" type="Dimension" values="상태"/>
+                        </viz:feeds>
+                    </viz:VizFrame>
+                </Panel>
+            </HBox>
+
+        </VBox>
+
+        <!-- 독촉 거래내역 테이블 -->
+        <Table id="dunningTable"
+               items="{path: '/DunningSet', parameters: {operationMode: 'Client', select: 'Bukrs,Belnr,Gjahr,PartnerNo,CompName,Budat,DueDate,OverdueDays,Skfor,Waers,ClearStatus,Lprio,Zterm,ZtermDays,Klimk'}}"
+               growing="true"
+               growingThreshold="50"
+               mode="MultiSelect"
+               noDataText="{view>/noDataText}"
+               sticky="HeaderToolbar,ColumnHeaders"
+               class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop">
+
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title text="지급독촉 거래내역" level="H3"/>
+                    <ToolbarSpacer/>
+                    <Button text="메일 발송"     icon="sap-icon://email"    press="onSendMail"    type="Ghost">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+                    </Button>
+                    <Button text="엑셀 다운로드" icon="sap-icon://download" press="onExcelExport" type="Ghost">
+                        <layoutData><OverflowToolbarLayoutData priority="NeverOverflow"/></layoutData>
+                    </Button>
+                </OverflowToolbar>
+            </headerToolbar>
+
+            <columns>
+                <Column id="colBukrs"   width="5em" ><Text text="회사코드"/></Column>
+                <Column id="colBelnr"   width="9em" ><Text text="전표번호"/></Column>
+                <Column id="colGjahr"   width="5em" ><Text text="회계연도"/></Column>
+                <Column id="colPartner" width="8em" ><Text text="BP번호"  /></Column>
+                <Column id="colComp"                ><Text text="거래처명"/></Column>
+                <Column id="colDueDate" width="8em" ><Text text="만기일"  /></Column>
+                <Column id="colOverdue" width="7em"  hAlign="End"><Text text="연체일"/></Column>
+                <Column id="colSkfor"   width="10em" hAlign="End"><Text text="미납금액"/></Column>
+                <Column id="colStatus"  width="7em"  hAlign="Center"><Text text="반제상태"/></Column>
+                <Column id="colLprio"   width="5em"  hAlign="Center"><Text text="등급"/></Column>
+                <Column id="colBudat"   width="8em" ><Text text="전기일"  /></Column>
+                <Column id="colZterm"   width="7em" ><Text text="지불조건"/></Column>
+            </columns>
+
+            <items>
+                <ColumnListItem type="Navigation" press="onItemPress">
+                    <!-- 회사코드 -->
+                    <Text text="{Bukrs}"/>
+                    <!-- 전표번호 -->
+                    <Text text="{Belnr}"/>
+                    <!-- 회계연도 -->
+                    <Text text="{Gjahr}"/>
+                    <!-- BP번호 -->
+                    <Text text="{PartnerNo}"/>
+                    <!-- 거래처명 -->
+                    <Text text="{CompName}"/>
+                    <!-- 만기일 -->
+                    <Text text="{path: 'DueDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd'}}"/>
+                    <!-- 연체일 (색상 강조) -->
+                    <ObjectNumber
+                        number="{OverdueDays}"
+                        unit="일"
+                        state="{path: 'OverdueDays', formatter: '.formatter.overdueDaysState'}"/>
+                    <!-- 미납금액 -->
+                    <Text text="{parts: [{path: 'Skfor'}, {path: 'Waers'}], formatter: '.formatter.formatAmount'}"/>
+                    <!-- 반제상태 -->
+                    <ObjectStatus
+                        text="{path: 'ClearStatus', formatter: '.formatter.clearStatusText'}"
+                        state="{path: 'ClearStatus', formatter: '.formatter.clearStatusState'}"
+                        icon="{path: 'ClearStatus', formatter: '.formatter.clearStatusIcon'}"/>
+                    <!-- 등급 -->
+                    <ObjectStatus
+                        text="{path: 'Lprio', formatter: '.formatter.lprioText'}"
+                        state="{path: 'Lprio', formatter: '.formatter.lprioState'}"/>
+                    <!-- 전기일 -->
+                    <Text text="{path: 'Budat', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'yyyy-MM-dd'}}"/>
+                    <!-- 지불조건 -->
+                    <Text text="{Zterm}"/>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+
+    </Page>
+</mvc:View>
