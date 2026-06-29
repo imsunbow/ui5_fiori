@@ -258,7 +258,7 @@ return Controller.extend("zgwe1fi0002.zgwe1fi0002.controller.DunningView", {
 
         _updateCharts: function (aCtx) {
             var mRange    = { "1-30일": 0, "31-60일": 0, "61-90일": 0, "90일 초과": 0 };
-            var mLprio    = { "고위험": 0, "주의": 0, "정상": 0 };
+            var mLprio    = { A: 0, B: 0, C: 0 };
             var mStatus   = { "미반제": 0, "일부반제": 0, "반제완료": 0 };
             var mCustomer = {};
 
@@ -271,8 +271,8 @@ return Controller.extend("zgwe1fi0002.zgwe1fi0002.controller.DunningView", {
                 else if (iDays > 30) mRange["31-60일"]++;
                 else                 mRange["1-30일"]++;
 
-                var sLprio = { A: "고위험", B: "주의", C: "정상" }[o.Lprio];
-                if (sLprio) mLprio[sLprio]++;
+                var sLprio = o.Lprio;
+                if (sLprio && mLprio.hasOwnProperty(sLprio)) mLprio[sLprio]++;
 
                 var sStatus = { N: "미반제", P: "일부반제", C: "반제완료" }[o.ClearStatus];
                 if (sStatus) mStatus[sStatus]++;
@@ -290,7 +290,11 @@ return Controller.extend("zgwe1fi0002.zgwe1fi0002.controller.DunningView", {
             oDunnModel.setData({
                 overdueRanges:     Object.keys(mRange).map(function (k) { return { label: k, count: mRange[k] }; }),
                 customerTop5:      aTop5,
-                lprioDistribution: Object.keys(mLprio).map(function (k)  { return { label: k, count: mLprio[k] }; }),
+                lprioDistribution: [
+                    { label: "A등급", count: mLprio.A || 0 },
+                    { label: "B등급", count: mLprio.B || 0 },
+                    { label: "C등급", count: mLprio.C || 0 }
+                ],
                 statusDistribution: Object.keys(mStatus).map(function (k) { return { label: k, count: mStatus[k] }; })
             });
         },
